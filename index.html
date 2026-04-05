@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Une page de voeux moderne et animee pour souhaiter une joyeuse fete de Paques.">
+    <title>Joyeuse fete de Paques</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="scene-paques">
+        <!-- Decor lumineux qui habille le fond -->
+        <div class="halo halo-gauche" aria-hidden="true"></div>
+        <div class="halo halo-droite" aria-hidden="true"></div>
+        <div class="halo-soleil" aria-hidden="true"></div>
+
+        <header class="section-hero">
+            <!-- Texte principal de bienvenue -->
+            <div class="hero-texte apparition">
+                <p class="surtitre">Printemps • Esperance • Lumiere</p>
+                <h1>Joyeuse fete de Paques a toutes celles et ceux qui visiteront cette page</h1>
+                <p class="introduction">
+                    Que cette saison de renouveau reveille la paix dans les cœurs, restaure les forces,
+                    ravive l'esperance et remplisse chaque maison d'une joie qui dure.
+                </p>
+
+                <div class="actions-hero">
+                    <a class="bouton principal" href="#voeu">Lire le grand message</a>
+                    <a class="bouton secondaire" href="#instants">Decouvrir l'ambiance</a>
+                </div>
+            </div>
+
+            <!-- Composition decorative et carte dynamique -->
+            <div class="hero-visuel apparition apparition-retard">
+                <div class="orbite orbite-une" aria-hidden="true"></div>
+                <div class="orbite orbite-deux" aria-hidden="true"></div>
+
+                <div class="galerie-oeufs" aria-hidden="true">
+                    <div class="carte-oeuf oeuf-dore">
+                        <span class="motif-oeuf"></span>
+                    </div>
+                    <div class="carte-oeuf oeuf-corail">
+                        <span class="motif-oeuf"></span>
+                    </div>
+                    <div class="carte-oeuf oeuf-menthe">
+                        <span class="motif-oeuf"></span>
+                    </div>
+                </div>
+
+                <!-- Ce texte change automatiquement grace au JavaScript -->
+                <div class="carte-benediction">
+                    <p class="etiquette-benediction">Message du jour</p>
+                    <p class="texte-benediction" id="texte-benediction" aria-live="polite">
+                        Aujourd'hui, la lumiere renait et rappelle que les plus belles victoires commencent dans le cœur.
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Message principal de la page -->
+            <section class="panneau-message apparition" id="voeu">
+                <div class="entete-section">
+                    <p class="etiquette-section">Le grand vœu</p>
+                    <h2>Un message fort pour une fete pleine de sens</h2>
+                </div>
+
+                <p class="message-fort">
+                    En ce jour de Paques, nous souhaitons a chaque visiteur une renaissance interieure.
+                    Que les blessures d'hier laissent place a la douceur, que les peurs cedent devant la foi,
+                    et que les pas de demain soient guides par une esperance vivante. Que l'amour retrouve
+                    sa place dans les familles, que la paix s'installe dans les esprits, et que la lumiere
+                    de cette fete vous accompagne bien au-dela d'aujourd'hui. Recevez cette celebration comme
+                    une promesse: la vie refleurit, les cœurs se relevent, et les plus beaux jours peuvent commencer maintenant.
+                </p>
+
+                <div class="bloc-citation">
+                    <p>
+                        "Que cette Paque ouvre devant vous une saison de grace, de courage,
+                        de pardon et de joie profonde."
+                    </p>
+                </div>
+            </section>
+
+            <!-- Trois cartes pour rythmer la lecture -->
+            <section class="instants" id="instants">
+                <article class="carte-instant apparition">
+                    <span class="nombre-instant" data-cible="100">0</span>
+                    <h3>Pour cent pour cent de joie</h3>
+                    <p>
+                        Une atmosphere lumineuse, douce et festive pour accueillir chaque visiteur avec chaleur.
+                    </p>
+                </article>
+
+                <article class="carte-instant apparition">
+                    <span class="nombre-instant" data-cible="365">0</span>
+                    <h3>Un elan qui dure toute l'annee</h3>
+                    <p>
+                        Parce que Paques n'est pas seulement une date, mais un rappel puissant de renouveau.
+                    </p>
+                </article>
+
+                <article class="carte-instant apparition">
+                    <span class="nombre-instant" data-cible="1">0</span>
+                    <h3>Un meme souhait pour tous</h3>
+                    <p>
+                        Que chaque personne qui passe ici reparte avec plus de paix, plus d'esperance et plus d'amour.
+                    </p>
+                </article>
+            </section>
+
+            <!-- Bandeau decoratif qui defile en continu -->
+            <section class="ruban apparition">
+                <div class="piste-ruban">
+                    <span>Joyeuse fete de Paques</span>
+                    <span>Paix</span>
+                    <span>Amour</span>
+                    <span>Esperance</span>
+                    <span>Renouveau</span>
+                    <span>Lumiere</span>
+                    <span>Joyeuse fete de Paques</span>
+                    <span>Paix</span>
+                    <span>Amour</span>
+                    <span>Esperance</span>
+                    <span>Renouveau</span>
+                    <span>Lumiere</span>
+                </div>
+            </section>
+        </main>
+
+        <footer class="pied-page apparition">
+            <p>Avec tendresse, couleur et lumiere pour celebrer une magnifique fete de Paques.</p>
+        </footer>
+
+        <!-- Conteneur des petales crees en JavaScript -->
+        <div class="petales-flottants" aria-hidden="true"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

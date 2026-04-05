@@ -1,0 +1,755 @@
+/* Palette generale de la page */
+:root {
+    --fond-haut: #fff4de;
+    --fond-milieu: #ffe4d5;
+    --fond-bas: #f0ffd9;
+    --texte-principal: #2d1f1f;
+    --texte-secondaire: #655356;
+    --accent-dore: #ffb347;
+    --accent-corail: #ff7f6e;
+    --accent-rose: #ff5d8f;
+    --accent-ciel: #8fd3ff;
+    --panneau: rgba(255, 251, 245, 0.74);
+    --bordure-panneau: rgba(255, 255, 255, 0.55);
+    --ombre-douce: 0 24px 60px rgba(154, 96, 51, 0.18);
+}
+
+/* Reglages generaux */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--texte-principal);
+    font-family: "Segoe UI Variable Text", "Trebuchet MS", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 32%),
+        radial-gradient(circle at top right, rgba(255, 220, 170, 0.65), transparent 24%),
+        linear-gradient(180deg, var(--fond-haut) 0%, var(--fond-milieu) 44%, var(--fond-bas) 100%);
+}
+
+/* Trame douce pour donner de la texture au fond */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+    background-size: 90px 90px;
+    -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 85%);
+    mask-image: radial-gradient(circle at center, black 45%, transparent 85%);
+    pointer-events: none;
+    opacity: 0.35;
+}
+
+.scene-paques {
+    position: relative;
+    width: min(1200px, calc(100% - clamp(18px, 3vw, 32px)));
+    margin: 0 auto;
+    padding: clamp(22px, 5vw, 48px) 0 clamp(28px, 5vw, 56px);
+}
+
+/* Halos lumineux decoratifs */
+.halo,
+.halo-soleil {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(18px);
+    pointer-events: none;
+}
+
+.halo-gauche {
+    width: 280px;
+    height: 280px;
+    top: 40px;
+    left: -100px;
+    background: rgba(255, 171, 91, 0.36);
+    animation: derive-lumiere 8s ease-in-out infinite;
+}
+
+.halo-droite {
+    width: 340px;
+    height: 340px;
+    top: 180px;
+    right: -120px;
+    background: rgba(130, 217, 153, 0.28);
+    animation: derive-lumiere 10s ease-in-out infinite reverse;
+}
+
+.halo-soleil {
+    width: 420px;
+    height: 420px;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255, 246, 188, 0.75), rgba(255, 246, 188, 0));
+}
+
+/* Structure principale */
+.section-hero,
+.panneau-message,
+.ruban,
+.pied-page {
+    position: relative;
+    z-index: 1;
+}
+
+.section-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+    align-items: center;
+    min-height: 82vh;
+}
+
+.hero-texte {
+    min-width: 0;
+    padding: clamp(24px, 4vw, 48px);
+}
+
+.hero-visuel,
+.panneau-message,
+.carte-instant,
+.ruban,
+.pied-page,
+.carte-benediction {
+    background: var(--panneau);
+    border: 1px solid var(--bordure-panneau);
+    box-shadow: var(--ombre-douce);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* Titres et textes d'introduction */
+.surtitre,
+.etiquette-section,
+.etiquette-benediction {
+    margin: 0 0 16px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #a86043;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Georgia", "Times New Roman", serif;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.6rem, 6vw, 5.7rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+}
+
+.introduction {
+    max-width: 640px;
+    margin: 24px 0 0;
+    font-size: 1.14rem;
+    line-height: 1.8;
+    color: var(--texte-secondaire);
+    text-wrap: pretty;
+}
+
+.actions-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+/* Boutons d'action */
+.bouton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: min(190px, 100%);
+    max-width: 100%;
+    padding: 15px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+.bouton:hover {
+    transform: translateY(-4px);
+}
+
+.bouton:focus-visible {
+    outline: 3px solid rgba(122, 77, 48, 0.45);
+    outline-offset: 4px;
+}
+
+.bouton.principal {
+    color: #fffdf7;
+    background: linear-gradient(135deg, var(--accent-corail), var(--accent-rose));
+    box-shadow: 0 18px 30px rgba(255, 93, 143, 0.28);
+}
+
+.bouton.secondaire {
+    color: #7a4d30;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Zone visuelle de droite */
+.hero-visuel {
+    position: relative;
+    min-width: 0;
+    min-height: clamp(440px, 60vw, 620px);
+    padding: clamp(22px, 4vw, 34px);
+    border-radius: clamp(24px, 4vw, 34px);
+    overflow: hidden;
+}
+
+.galerie-oeufs {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 18px;
+    height: 360px;
+}
+
+.carte-oeuf {
+    position: relative;
+    width: 150px;
+    border-radius: 50% 50% 46% 46% / 58% 58% 42% 42%;
+    box-shadow: var(--ombre-douce);
+    animation: flottement 4.5s ease-in-out infinite;
+}
+
+.carte-oeuf::before {
+    content: "";
+    display: block;
+    padding-top: 130%;
+}
+
+/* Les motifs decoratifs sont dessines avec un pseudo-element */
+.motif-oeuf,
+.motif-oeuf::before,
+.motif-oeuf::after {
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    height: 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.68);
+    content: "";
+}
+
+.motif-oeuf {
+    top: 28%;
+}
+
+.motif-oeuf::before {
+    top: 72px;
+}
+
+.motif-oeuf::after {
+    top: 144px;
+}
+
+.oeuf-dore {
+    background: linear-gradient(180deg, #ffd97a 0%, var(--accent-dore) 100%);
+    transform: translateY(30px) rotate(-10deg);
+}
+
+.oeuf-corail {
+    width: 185px;
+    background: linear-gradient(180deg, #ff9f8f 0%, #ff6f91 100%);
+    transform: translateY(0) rotate(-1deg);
+    animation-delay: -1.3s;
+}
+
+.oeuf-menthe {
+    background: linear-gradient(180deg, #b6f1c6 0%, #79c989 100%);
+    transform: translateY(48px) rotate(10deg);
+    animation-delay: -2.4s;
+}
+
+.carte-benediction {
+    max-width: 390px;
+    margin: 18px auto 0;
+    padding: 24px 26px;
+    border-radius: 28px;
+    text-align: left;
+}
+
+.texte-benediction {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #52393c;
+}
+
+/* Cercles qui tournent autour de la composition */
+.orbite {
+    position: absolute;
+    border: 1px dashed rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+    inset: 80px 20px 80px 20px;
+    animation: rotation-lente 20s linear infinite;
+}
+
+.orbite-deux {
+    inset: 30px 80px 40px 80px;
+    animation-duration: 28s;
+    animation-direction: reverse;
+}
+
+/* Bloc central de message */
+.panneau-message {
+    margin-top: 18px;
+    padding: clamp(24px, 4vw, 42px);
+    border-radius: clamp(24px, 4vw, 34px);
+}
+
+.entete-section h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.message-fort {
+    margin: 24px 0 0;
+    font-size: 1.14rem;
+    line-height: 1.95;
+    color: #4e3b3f;
+    text-wrap: pretty;
+}
+
+.bloc-citation {
+    margin-top: 28px;
+    padding: 22px 24px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255, 179, 71, 0.18), rgba(143, 211, 255, 0.18));
+    border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.bloc-citation p {
+    margin: 0;
+    font-size: 1.06rem;
+    font-style: italic;
+    color: #774a41;
+}
+
+/* Grille des cartes du bas */
+.instants {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.carte-instant {
+    min-width: 0;
+    padding: clamp(22px, 3vw, 28px);
+    border-radius: 28px;
+}
+
+.nombre-instant {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 3.4rem;
+    line-height: 1;
+    color: #c35a39;
+}
+
+.carte-instant h3 {
+    margin: 0 0 14px;
+    font-size: 1.45rem;
+}
+
+.carte-instant p,
+.pied-page p {
+    margin: 0;
+    line-height: 1.75;
+    color: var(--texte-secondaire);
+}
+
+/* Bandeau qui tourne en boucle */
+.ruban {
+    margin-top: 24px;
+    overflow: hidden;
+    border-radius: 999px;
+}
+
+.piste-ruban {
+    display: flex;
+    gap: 36px;
+    width: max-content;
+    padding: 18px 26px;
+    font-weight: 800;
+    color: #9f5b3b;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+    animation: defilement-ruban 24s linear infinite;
+}
+
+.pied-page {
+    margin-top: 24px;
+    padding: 24px 30px;
+    border-radius: 24px;
+    text-align: center;
+}
+
+/* Conteneur plein ecran pour les petales */
+.petales-flottants {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.petale {
+    position: absolute;
+    top: -10%;
+    width: 18px;
+    height: 26px;
+    border-radius: 60% 40% 65% 35%;
+    opacity: 0.75;
+    filter: blur(0.2px);
+    animation: chute-petale linear forwards;
+}
+
+/* Classe reutilisable pour faire apparaitre un element au scroll */
+.apparition {
+    opacity: 0;
+    transform: translateY(42px);
+    transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.apparition-retard {
+    transition-delay: 180ms;
+}
+
+.apparition.est-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animations principales */
+@keyframes flottement {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -18px;
+    }
+}
+
+@keyframes derive-lumiere {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(16px, -18px, 0);
+    }
+}
+
+@keyframes rotation-lente {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes defilement-ruban {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes chute-petale {
+    0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.78;
+    }
+    100% {
+        transform: translate3d(var(--derive-horizontal), 110vh, 0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Adaptation tablette */
+@media (max-width: 1100px) {
+    .section-hero {
+        gap: 22px;
+    }
+
+    .introduction,
+    .message-fort {
+        font-size: 1.05rem;
+    }
+
+    .galerie-oeufs {
+        height: 320px;
+    }
+
+    .carte-oeuf {
+        width: 128px;
+    }
+
+    .oeuf-corail {
+        width: 156px;
+    }
+
+    .orbite {
+        inset: 68px 18px;
+    }
+
+    .orbite-deux {
+        inset: 28px 56px 34px 56px;
+    }
+}
+
+@media (max-width: 980px) {
+    .section-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-texte {
+        padding-bottom: 0;
+    }
+
+    .instants {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .carte-instant:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .hero-visuel {
+        min-height: 500px;
+    }
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+    .hero-texte,
+    .hero-visuel,
+    .panneau-message,
+    .carte-instant,
+    .pied-page {
+        padding: 24px;
+    }
+
+    .hero-visuel {
+        min-height: 440px;
+    }
+
+    .carte-benediction {
+        padding: 20px 18px;
+    }
+}
+
+@media (max-width: 640px) {
+    .scene-paques {
+        width: min(100% - 16px, 1000px);
+    }
+
+    .hero-texte,
+    .hero-visuel,
+    .panneau-message,
+    .carte-instant,
+    .pied-page {
+        padding: 22px;
+    }
+
+    .actions-hero {
+        flex-direction: column;
+    }
+
+    .bouton {
+        width: 100%;
+        min-width: 0;
+    }
+
+    h1 {
+        font-size: clamp(2.15rem, 11vw, 3.1rem);
+        line-height: 1.02;
+    }
+
+    .introduction {
+        margin-top: 18px;
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .entete-section h2 {
+        font-size: clamp(1.7rem, 8vw, 2.4rem);
+    }
+
+    .message-fort {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .hero-visuel {
+        min-height: 380px;
+    }
+
+    .galerie-oeufs {
+        gap: 8px;
+        height: 220px;
+    }
+
+    .carte-oeuf {
+        width: 78px;
+    }
+
+    .oeuf-corail {
+        width: 98px;
+    }
+
+    .motif-oeuf,
+    .motif-oeuf::before,
+    .motif-oeuf::after {
+        height: 10px;
+    }
+
+    .motif-oeuf::before {
+        top: 46px;
+    }
+
+    .motif-oeuf::after {
+        top: 92px;
+    }
+
+    .orbite {
+        inset: 56px -8px 58px -8px;
+    }
+
+    .orbite-deux {
+        inset: 20px 18px 30px 18px;
+    }
+
+    .instants {
+        grid-template-columns: 1fr;
+    }
+
+    .carte-instant:last-child {
+        grid-column: auto;
+    }
+
+    .piste-ruban {
+        gap: 24px;
+        padding: 16px 18px;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-texte,
+    .hero-visuel,
+    .panneau-message,
+    .carte-instant,
+    .pied-page {
+        padding: 18px;
+    }
+
+    .surtitre,
+    .etiquette-section,
+    .etiquette-benediction {
+        font-size: 0.76rem;
+        letter-spacing: 0.18em;
+    }
+
+    h1 {
+        font-size: clamp(1.9rem, 11vw, 2.5rem);
+    }
+
+    .hero-visuel {
+        min-height: 340px;
+    }
+
+    .galerie-oeufs {
+        height: 190px;
+    }
+
+    .carte-oeuf {
+        width: 64px;
+    }
+
+    .oeuf-corail {
+        width: 84px;
+    }
+
+    .motif-oeuf,
+    .motif-oeuf::before,
+    .motif-oeuf::after {
+        height: 8px;
+    }
+
+    .motif-oeuf::before {
+        top: 36px;
+    }
+
+    .motif-oeuf::after {
+        top: 72px;
+    }
+
+    .carte-benediction {
+        padding: 18px 16px;
+        border-radius: 20px;
+    }
+
+    .texte-benediction {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .nombre-instant {
+        font-size: 2.7rem;
+    }
+
+    .carte-instant h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Version plus calme pour les personnes sensibles aux animations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .apparition {
+        opacity: 1;
+        transform: none;
+    }
+}
